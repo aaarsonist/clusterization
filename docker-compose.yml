@@ -1,0 +1,112 @@
+# Программное средство сегментации клиентов методами кластерного анализа в целях персонализации лояльности.
+# Узлы: СУБД PostgreSQL, сервер бизнес-логики, интеллектуальный микросервис, веб-клиент (nginx).
+# Все межсервисные соединения защищены TLS; наружу опубликован только веб-интерфейс.
+name: loyalty-segmentation
+
+services:
+  certgen:
+    image: alpine:3.23.3
+    command: ["/bin/sh", "/opt/generate.sh"]
+    volumes:
+      - certs:/certs
+      - ./docker/certs/generate.sh:/opt/generate.sh:ro
+    restart: "no"
+
+  postgres:
+    image: postgres:17.7-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Не задан POSTGRES_PASSWORD в файле .env}
+      POSTGRES_DB: ${POSTGRES_DB:-loyalty_db}
+    command: >
+      postgres -c ssl=on -c ssl_min_protocol_version=TLSv1.2
+      -c ssl_cert_file=/certs/postgres.crt -c ssl_key_file=/certs/postgres.key -c ssl_ca_file=/certs/ca.crt
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - certs:/certs:ro
+      - ./docker/postgres/00-require-tls.sh:/docker-entrypoint-initdb.d/00-require-tls.sh:ro
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      certgen:
+        condition: service_completed_successfully
+    networks: [backend_net]
+
+  ai_service:
+    build:
+      context: .
+      dockerfile: docker/ai_service/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - certs:/certs:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "--cacert", "/certs/ca.crt", "https://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    depends_on:
+      certgen:
+        condition: service_completed_successfully
+    networks: [backend_net]
+
+  backend_core:
+    build:
+      context: .
+      dockerfile: docker/backend_core/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_SERVER: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_SSL: "true"
+      AI_SERVICE_URL: https://ai_service:8001
+      TLS_CA_FILE: /certs/ca.crt
+      BACKUP_DIR: /backups
+    volumes:
+      - certs:/certs:ro
+      - ./backups:/backups
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "--cacert", "/certs/ca.crt", "https://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ai_service:
+        condition: service_healthy
+    networks: [backend_net, frontend_net]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8443:443"
+      - "3000:80"
+    volumes:
+      - certs:/certs:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    depends_on:
+      backend_core:
+        condition: service_healthy
+    networks: [frontend_net]
+
+networks:
+  frontend_net:
+  backend_net:
+    internal: true
+
+volumes:
+  postgres_data:
+  certs:

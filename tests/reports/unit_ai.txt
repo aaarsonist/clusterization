@@ -1,0 +1,33 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.0.2, pluggy-1.7.0 -- C:\BSUIR\4_course\anya_kursovaya\project\.venv\Scripts\python.exe
+rootdir: C:\BSUIR\4_course\anya_kursovaya\project
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 18 items
+
+test_api.py::test_health PASSED                                          [  5%]
+test_api.py::test_benchmark_endpoint PASSED                              [ 11%]
+test_api.py::test_rejects_too_few_vectors PASSED                         [ 16%]
+test_api.py::test_rejects_negative_values PASSED                         [ 22%]
+test_api.py::test_rejects_k_not_less_than_n PASSED                       [ 27%]
+test_api.py::test_assign_endpoint PASSED                                 [ 33%]
+test_clustering.py::test_features_log_transform PASSED                   [ 38%]
+test_clustering.py::test_benchmark_structure PASSED                      [ 44%]
+test_clustering.py::test_kmeans_finds_four_groups PASSED                 [ 50%]
+test_clustering.py::test_segment_codes_and_unique_labels PASSED          [ 55%]
+test_clustering.py::test_target_k_is_respected PASSED                    [ 61%]
+test_clustering.py::test_benchmark_is_deterministic PASSED               [ 66%]
+test_clustering.py::test_assign_reproduces_training_labels PASSED        [ 72%]
+test_clustering.py::test_quality_metrics_degenerate_partition PASSED     [ 77%]
+test_clustering.py::test_dbscan_noise_profile PASSED                     [ 83%]
+test_clustering.py::test_score_penalties PASSED                          [ 88%]
+test_clustering.py::test_low_quality_flag PASSED                         [ 94%]
+test_clustering.py::test_performance_50000_clients PASSED                [100%]
+
+============================== warnings summary ===============================
+..\..\.venv\Lib\site-packages\starlette\testclient.py:45
+  C:\BSUIR\4_course\anya_kursovaya\project\.venv\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 18 passed, 1 warning in 21.83s ========================

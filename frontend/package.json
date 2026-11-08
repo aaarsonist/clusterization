@@ -1,0 +1,38 @@
+{
+  "name": "loyalty-segmentation-frontend",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Клиентский компонент программного средства сегментации клиентов (версии зафиксированы на январь 2026 г.)",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/wix-madefor-display": "5.2.8",
+    "@fontsource/wix-madefor-text": "5.2.8",
+    "chart.js": "4.5.1",
+    "chartjs-plugin-zoom": "2.2.0",
+    "clsx": "2.1.1",
+    "hammerjs": "2.0.8",
+    "lucide-react": "0.563.0",
+    "react": "19.2.4",
+    "react-chartjs-2": "5.3.1",
+    "react-dom": "19.2.4",
+    "tailwind-merge": "3.4.0"
+  },
+  "devDependencies": {
+    "@types/hammerjs": "2.0.46",
+    "@types/node": "22.19.7",
+    "@types/react": "19.2.10",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.2",
+    "autoprefixer": "10.4.24",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.19",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
+}

@@ -1,0 +1,5 @@
+# Зависимости для запуска автоматизированных тестов и статического анализа
+-r ai_service/requirements.txt
+-r backend_core/requirements.txt
+pytest==9.0.2
+ruff==0.14.14

@@ -1,0 +1,7 @@
+auto kmeans {'k': 6, 'silhouette': 0.6977, 'davies_bouldin': 0.4464, 'noise': 0.0, 'ARI': 0.9111, 'NMI': 0.9299, 'homogeneity': 0.9966, 'completeness': 0.8715}
+auto agglomerative {'k': 6, 'silhouette': 0.6969, 'davies_bouldin': 0.4482, 'noise': 0.0, 'ARI': 0.9111, 'NMI': 0.9298, 'homogeneity': 0.9966, 'completeness': 0.8715}
+auto dbscan {'k': 7, 'silhouette': 0.5485, 'davies_bouldin': 1.0414, 'noise': 1.5, 'ARI': 0.8161, 'NMI': 0.8563, 'homogeneity': 0.9908, 'completeness': 0.7539}
+k4 kmeans {'k': 4, 'silhouette': 0.6919, 'davies_bouldin': 0.4405, 'noise': 0.0, 'ARI': 0.8964, 'NMI': 0.9133, 'homogeneity': 0.9076, 'completeness': 0.919}
+k4 agglomerative {'k': 4, 'silhouette': 0.6907, 'davies_bouldin': 0.4995, 'noise': 0.0, 'ARI': 0.9883, 'NMI': 0.9813, 'homogeneity': 0.9813, 'completeness': 0.9813}
+k4 dbscan {'k': 7, 'silhouette': 0.5485, 'davies_bouldin': 1.0414, 'noise': 1.5, 'ARI': 0.8161, 'NMI': 0.8563, 'homogeneity': 0.9908, 'completeness': 0.7539}
+deterministic: True periods: {90: {'k': 5, 'silhouette': 0.5956, 'davies_bouldin': 0.5252}, 180: {'k': 6, 'silhouette': 0.6973, 'davies_bouldin': 0.456}}

@@ -1,0 +1,64 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.0.2, pluggy-1.7.0 -- C:\BSUIR\4_course\anya_kursovaya\project\.venv\Scripts\python.exe
+rootdir: C:\BSUIR\4_course\anya_kursovaya\project
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 49 items
+
+test_api_validation.py::test_validation_messages_are_russian PASSED      [  2%]
+test_api_validation.py::test_protected_endpoint_requires_token PASSED    [  4%]
+test_api_validation.py::test_invalid_token_rejected PASSED               [  6%]
+test_business.py::test_segment_rule_beats_general PASSED                 [  8%]
+test_business.py::test_max_benefit_among_same_priority PASSED            [ 10%]
+test_business.py::test_manual_inclusion_has_highest_priority PASSED      [ 12%]
+test_business.py::test_exclusion_and_inactive_rules_are_ignored PASSED   [ 14%]
+test_business.py::test_min_check_amount PASSED                           [ 16%]
+test_business.py::test_benefit_calculation[r0-200.00-30.00-0.00-170.00] PASSED [ 18%]
+test_business.py::test_benefit_calculation[r1-33.33-2.50-0.00-30.83] PASSED [ 20%]
+test_business.py::test_benefit_calculation[r2-150.55-0.00-15.06-150.55] PASSED [ 22%]
+test_business.py::test_benefit_calculation[r3-80.00-0.00-300-80.00] PASSED [ 24%]
+test_business.py::test_benefit_calculation[None-80.00-0.00-0.00-80.00] PASSED [ 26%]
+test_business.py::test_csv_injection_protection[=HYPERLINK("x")-'=HYPERLINK("x")] PASSED [ 28%]
+test_business.py::test_csv_injection_protection[+1+1-'+1+1] PASSED       [ 30%]
+test_business.py::test_csv_injection_protection[-5-'-5] PASSED           [ 32%]
+test_business.py::test_csv_injection_protection[@SUM(A1)-'@SUM(A1)] PASSED [ 34%]
+test_business.py::test_csv_injection_protection[+375291234567-+375291234567] PASSED [ 36%]
+test_business.py::test_csv_injection_protection[\u0418\u0432\u0430\u043d\u043e\u0432-\u0418\u0432\u0430\u043d\u043e\u0432] PASSED [ 38%]
+test_business.py::test_csv_injection_protection[None-] PASSED            [ 40%]
+test_business.py::test_csv_has_bom_and_semicolon PASSED                  [ 42%]
+test_business.py::test_xlsx_export PASSED                                [ 44%]
+test_business.py::test_parse_dates[2026-01-25 14:30:00] PASSED           [ 46%]
+test_business.py::test_parse_dates[25.01.2026 14:30] PASSED              [ 48%]
+test_business.py::test_parse_dates[2026-01-25T14:30:00] PASSED           [ 51%]
+test_business.py::test_parse_dates[25.01.2026] PASSED                    [ 53%]
+test_business.py::test_parse_date_rejects_garbage PASSED                 [ 55%]
+test_business.py::test_parse_amount PASSED                               [ 57%]
+test_business.py::test_circuit_breaker_states PASSED                     [ 59%]
+test_business.py::test_login_throttle PASSED                             [ 61%]
+test_security.py::test_pii_encryption_roundtrip_and_randomized_nonce PASSED [ 63%]
+test_security.py::test_tampered_ciphertext_is_rejected PASSED            [ 65%]
+test_security.py::test_blind_index_is_deterministic PASSED               [ 67%]
+test_security.py::test_normalize_phone[+375 (29) 123-45-67-+375291234567] PASSED [ 69%]
+test_security.py::test_normalize_phone[80291234567-+375291234567] PASSED [ 71%]
+test_security.py::test_normalize_phone[291234567-+375291234567] PASSED   [ 73%]
+test_security.py::test_normalize_phone[375441112233-+375441112233] PASSED [ 75%]
+test_security.py::test_normalize_phone[12345-None] PASSED                [ 77%]
+test_security.py::test_normalize_phone[+7 999 123-45-67-None] PASSED     [ 79%]
+test_security.py::test_password_policy[Admin#2026-True] PASSED           [ 81%]
+test_security.py::test_password_policy[password1-True] PASSED            [ 83%]
+test_security.py::test_password_policy[\u043a\u043e\u0440\u043e\u0442\u043a\u0438\u04391-True] PASSED [ 85%]
+test_security.py::test_password_policy[short1-False] PASSED              [ 87%]
+test_security.py::test_password_policy[onlyletters-False] PASSED         [ 89%]
+test_security.py::test_password_policy[12345678-False] PASSED            [ 91%]
+test_security.py::test_password_hashing PASSED                           [ 93%]
+test_security.py::test_jwt_roundtrip_and_expiry PASSED                   [ 95%]
+test_security.py::test_jwt_signature_forgery_rejected PASSED             [ 97%]
+test_security.py::test_aes_gcm_aad_binding PASSED                        [100%]
+
+============================== warnings summary ===============================
+..\..\.venv\Lib\site-packages\starlette\testclient.py:45
+  C:\BSUIR\4_course\anya_kursovaya\project\.venv\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 49 passed, 1 warning in 2.66s ========================

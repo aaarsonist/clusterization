@@ -1,0 +1,4 @@
+{"description": "PER-3: отображение графика рассеяния в Chrome, база 10 000 клиентов, выводится 5000 точек (подвыборка), 3 замера",
+ "results": [{"total_ms": 345, "fetch_ms": 261, "render_ms": 63, "size_kb": 266},
+             {"total_ms": 354, "fetch_ms": 278, "render_ms": 32, "size_kb": 266},
+             {"total_ms": 278, "fetch_ms": 221, "render_ms": 37, "size_kb": 266}]}

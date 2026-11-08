@@ -1,0 +1,62 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.0.2, pluggy-1.7.0 -- C:\BSUIR\4_course\anya_kursovaya\project\.venv\Scripts\python.exe
+rootdir: C:\BSUIR\4_course\anya_kursovaya\project
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 47 items
+
+test_01_auth_rbac.py::test_login_success_returns_role PASSED             [  2%]
+test_01_auth_rbac.py::test_login_wrong_password PASSED                   [  4%]
+test_01_auth_rbac.py::test_requests_without_token_are_rejected PASSED    [  6%]
+test_01_auth_rbac.py::test_admin_has_no_access_to_customer_data[GET-/api/v1/clients] PASSED [  8%]
+test_01_auth_rbac.py::test_admin_has_no_access_to_customer_data[GET-/api/v1/segmentation/current] PASSED [ 10%]
+test_01_auth_rbac.py::test_admin_has_no_access_to_customer_data[GET-/api/v1/loyalty/rules] PASSED [ 12%]
+test_01_auth_rbac.py::test_admin_has_no_access_to_customer_data[GET-/api/v1/segmentation/migration] PASSED [ 14%]
+test_01_auth_rbac.py::test_admin_has_no_access_to_customer_data[GET-/api/v1/segmentation/export] PASSED [ 17%]
+test_01_auth_rbac.py::test_marketer_has_no_access_to_administration[GET-/api/v1/users] PASSED [ 19%]
+test_01_auth_rbac.py::test_marketer_has_no_access_to_administration[GET-/api/v1/backups] PASSED [ 21%]
+test_01_auth_rbac.py::test_marketer_has_no_access_to_administration[GET-/api/v1/audit] PASSED [ 23%]
+test_01_auth_rbac.py::test_marketer_has_no_access_to_administration[POST-/api/v1/sync/demo/reset-zero-state] PASSED [ 25%]
+test_01_auth_rbac.py::test_common_functions[GET-/api/v1/summary] PASSED  [ 27%]
+test_01_auth_rbac.py::test_common_functions[GET-/api/v1/sync/status] PASSED [ 29%]
+test_01_auth_rbac.py::test_common_functions[GET-/api/v1/auth/me] PASSED  [ 31%]
+test_01_auth_rbac.py::test_user_lifecycle PASSED                         [ 34%]
+test_01_auth_rbac.py::test_admin_cannot_deactivate_self PASSED           [ 36%]
+test_01_auth_rbac.py::test_bruteforce_lockout PASSED                     [ 38%]
+test_01_auth_rbac.py::test_audit_records_logins PASSED                   [ 40%]
+test_02_segmentation.py::test_feature_matrix PASSED                      [ 42%]
+test_02_segmentation.py::test_invalid_period_rejected PASSED             [ 44%]
+test_02_segmentation.py::test_benchmark_and_approval PASSED              [ 46%]
+test_02_segmentation.py::test_points_for_scatter PASSED                  [ 48%]
+test_02_segmentation.py::test_target_k PASSED                            [ 51%]
+test_02_segmentation.py::test_migration_requires_second_snapshot PASSED  [ 53%]
+test_02_segmentation.py::test_month_simulation_and_migration PASSED      [ 55%]
+test_02_segmentation.py::test_drilldown_and_exports PASSED               [ 57%]
+test_03_loyalty_clients.py::test_clients_pagination_and_search PASSED    [ 59%]
+test_03_loyalty_clients.py::test_cluster_filter PASSED                   [ 61%]
+test_03_loyalty_clients.py::test_client_profile PASSED                   [ 63%]
+test_03_loyalty_clients.py::test_rule_lifecycle_and_discount PASSED      [ 65%]
+test_03_loyalty_clients.py::test_manual_inclusion_into_other_rule PASSED [ 68%]
+test_03_loyalty_clients.py::test_discount_unknown_client PASSED          [ 70%]
+test_04_sync_security.py::test_pos_sync PASSED                           [ 72%]
+test_04_sync_security.py::test_csv_import PASSED                         [ 74%]
+test_04_sync_security.py::test_csv_wrong_extension PASSED                [ 76%]
+test_04_sync_security.py::test_http_redirects_to_https PASSED            [ 78%]
+test_04_sync_security.py::test_security_headers PASSED                   [ 80%]
+test_04_sync_security.py::test_tls_version PASSED                        [ 82%]
+test_04_sync_security.py::test_internal_ports_are_not_published PASSED   [ 85%]
+test_04_sync_security.py::test_personal_data_encrypted_at_rest PASSED    [ 87%]
+test_04_sync_security.py::test_database_requires_tls PASSED              [ 89%]
+test_04_sync_security.py::test_health PASSED                             [ 91%]
+test_05_backup.py::test_backup_create_and_restore PASSED                 [ 93%]
+test_05_backup.py::test_backup_settings PASSED                           [ 95%]
+test_05_backup.py::test_restore_unknown_file PASSED                      [ 97%]
+test_06_resilience.py::test_ai_service_outage PASSED                     [100%]
+
+============================== warnings summary ===============================
+tests/integration/test_04_sync_security.py::test_tls_version
+  C:\BSUIR\4_course\anya_kursovaya\project\tests\integration\test_04_sync_security.py:54: DeprecationWarning: ssl.TLSVersion.TLSv1_1 is deprecated
+    weak.maximum_version = ssl.TLSVersion.TLSv1_1
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================== 47 passed, 1 warning in 82.41s (0:01:22) ===================

@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ТЕМНАЯ ТЕМА: Deep Twilight Slate (глубокий вечерний сланец) */
+  --bg-app: #0f1117;
+  --bg-card: rgba(22, 25, 34, 0.72);
+  --bg-card-hover: rgba(28, 32, 44, 0.82);
+  --bg-input: rgba(16, 18, 25, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  --text-main: #f3f5f9;
+  --text-secondary: #9097a9;
+  --text-muted: #5e6577;
+
+  /* Сигнальные акценты Dusk */
+  --accent-primary: #8b9bf8;        /* Элегантный барвинок (CTA, фокус, выбор) */
+  --accent-primary-hover: #9caaf9;
+  --accent-primary-text: #0e1122;
+  --accent-coral: #f09575;          /* Мягкий абрикос/коралл (отток, предупреждения) */
+  --accent-coral-subtle: rgba(240, 149, 117, 0.15);
+  --accent-sage: #7ecba1;           /* Спокойный шалфей (рост, удержание, успех) */
+  --accent-sage-subtle: rgba(126, 203, 161, 0.15);
+
+  /* Токены-синонимы Dusk */
+  --dusk-paper: var(--bg-app);
+  --dusk-paper-subtle: var(--bg-input);
+  --dusk-glass: var(--bg-card);
+  --dusk-glass-border: var(--border-glass);
+  --dusk-glass-hi: var(--glass-highlight);
+  --dusk-ink: var(--text-main);
+  --dusk-ink-muted: var(--text-secondary);
+  --dusk-rule: var(--border-glass);
+  --dusk-periwinkle: var(--accent-primary);
+  --dusk-periwinkle-ink: var(--accent-primary-text);
+  --dusk-apricot: var(--accent-coral);
+  --dusk-apricot-ink: #0e1122;
+  --dusk-sage: var(--accent-sage);
+
+  --dusk-radius-card: 16px;
+  --dusk-radius-inner: 12px;
+  --dusk-radius-pill: 9999px;
+
+  color-scheme: dark;
+}
+
+.light {
+  /* СВЕТЛАЯ ТЕМА: Clean Porcelain & Soft Mist (никакого желтого бежа!) */
+  --bg-app: #f4f6fa;               /* Чистый светлый прохладный фон */
+  --bg-card: rgba(255, 255, 255, 0.82); /* Белоснежное полупрозрачное стекло */
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --bg-input: rgba(240, 243, 249, 0.85);
+  --border-glass: rgba(0, 0, 0, 0.06);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  --text-main: #141721;            /* Глубокий читаемый темный текст */
+  --text-secondary: #586074;       /* Спокойный серый текст с высокой читаемостью */
+  --text-muted: #8e95a5;
+
+  /* Акценты для светлой темы */
+  --accent-primary: #4659eb;        /* Благородный сине-фиалковый */
+  --accent-primary-hover: #384ad8;
+  --accent-primary-text: #ffffff;
+  --accent-coral: #de6e4b;          /* Приглушенный коралл */
+  --accent-coral-subtle: rgba(222, 110, 75, 0.12);
+  --accent-sage: #2e8b57;           /* Насыщенный шалфейный */
+  --accent-sage-subtle: rgba(46, 139, 87, 0.12);
+
+  /* Токены-синонимы Dusk */
+  --dusk-paper: var(--bg-app);
+  --dusk-paper-subtle: var(--bg-input);
+  --dusk-glass: var(--bg-card);
+  --dusk-glass-border: var(--border-glass);
+  --dusk-glass-hi: var(--glass-highlight);
+  --dusk-ink: var(--text-main);
+  --dusk-ink-muted: var(--text-secondary);
+  --dusk-rule: var(--border-glass);
+  --dusk-periwinkle: var(--accent-primary);
+  --dusk-periwinkle-ink: var(--accent-primary-text);
+  --dusk-apricot: var(--accent-coral);
+  --dusk-apricot-ink: #ffffff;
+  --dusk-sage: var(--accent-sage);
+
+  color-scheme: light;
+}
+
+@layer base {
+  body {
+    font-family: 'Wix Madefor Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, .font-heading, .font-display {
+    font-family: 'Wix Madefor Display', 'Wix Madefor Text', sans-serif;
+  }
+}
+
+@layer components {
+  /* Парящая стеклянная карточка Dusk */
+  .dusk-card, .bento-card, .glass-card {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--glass-highlight), 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+  }
+
+  .dark .dusk-card, .dark .bento-card, .dark .glass-card {
+    box-shadow: var(--glass-highlight), 0 8px 32px rgba(0, 0, 0, 0.36);
+  }
+
+  /* Вторичная вложенная подложка */
+  .dusk-well, .bento-card-subtle, .glass-card-subtle {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    border-radius: 0.75rem;
+  }
+
+  /* Инпут в эстетике Dusk */
+  .dusk-input, .glass-input {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+  }
+
+  .dusk-input::placeholder, .glass-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .dusk-input:focus, .glass-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(139, 155, 248, 0.22);
+  }
+}
+
+/* Элегантные скругленные скроллбары */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(144, 151, 169, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
